@@ -1,0 +1,93 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy / pyright
+.mypy_cache/
+.pyright/
+
+# Ruff
+.ruff_cache/
+
+# JAX / ML specific
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.ckpt
+*.pkl
+*.pickle
+
+# TensorBoard logs
+runs/
+logs/
+tensorboard/
+
+# Checkpoints
+checkpoints/
+*.orbax/
+
+# Data files
+.data/
+data/
+*.txt
+!requirements.txt
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Profiling
+*.prof
+*.trace
+trace/
+
+# Misc
+*.log
+.env
+.envrc

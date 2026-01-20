@@ -6,13 +6,12 @@ a single batch, which proves mathematical correctness.
 
 import jax
 import jax.numpy as jnp
-import numpy as np
 import pytest
 
 from parallax.config import TransformerConfig
 from parallax.model.transformer import create_model
 from parallax.training.data import CharacterTokenizer, TextDataset
-from parallax.training.loss import compute_loss, cross_entropy_loss, z_loss
+from parallax.training.loss import cross_entropy_loss, z_loss
 from parallax.training.optimizer import (
     create_learning_rate_schedule,
     create_optimizer,

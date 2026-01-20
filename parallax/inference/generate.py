@@ -11,8 +11,6 @@ from typing import Any
 import jax
 import jax.numpy as jnp
 
-from parallax.config import TransformerConfig
-from parallax.layers.attention import KVCache
 from parallax.model.transformer import TransformerLM
 
 Array = jnp.ndarray
@@ -132,7 +130,6 @@ def generate(
         prompt_tokens = prompt_tokens[None, :]
 
     batch_size, prompt_len = prompt_tokens.shape
-    config = model.config
 
     # Initialize KV-Cache
     cache = model.init_cache(batch_size, max_seq_len=prompt_len + max_new_tokens)

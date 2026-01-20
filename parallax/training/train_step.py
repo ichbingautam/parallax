@@ -11,7 +11,6 @@ from typing import Any, NamedTuple
 
 import jax
 import jax.numpy as jnp
-import optax
 
 from parallax.training.loss import compute_loss
 from parallax.training.optimizer import TrainState, global_norm
@@ -93,26 +92,6 @@ def train_step(
 
     # Compute parameter norm
     param_norm = global_norm(state.params)
-
-    # Get current learning rate from optimizer state
-    # The learning rate is stored in the adamw state
-    opt_state = state.opt_state
-    # Navigate the chained optimizer state
-    # chain(clip_by_global_norm, adamw) -> (clip_state, adamw_state)
-    # adamw state has ScaleByAdamState at index 0
-    if hasattr(opt_state, "__getitem__"):
-        # Get the count from adamw state for the schedule
-        adamw_state = opt_state[1]
-        if hasattr(adamw_state, "__getitem__"):
-            scale_state = adamw_state[0]
-            if hasattr(scale_state, "count"):
-                step_count = scale_state.count
-            else:
-                step_count = state.step
-        else:
-            step_count = state.step
-    else:
-        step_count = state.step
 
     # Recompute learning rate from schedule
     # Note: In practice, you'd pass the schedule or store LR differently

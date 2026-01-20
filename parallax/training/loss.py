@@ -38,7 +38,6 @@ def cross_entropy_loss(
     mask = targets != ignore_index
 
     # Flatten for easier processing
-    logits_flat = logits.reshape(-1, vocab_size)
     targets_flat = targets.reshape(-1)
 
     # Compute log probabilities (numerically stable)

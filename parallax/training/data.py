@@ -6,8 +6,8 @@ Implements a streaming data pipeline using tf.data for:
 - Batching and sequence padding
 """
 
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 import jax.numpy as jnp
 import numpy as np
@@ -35,7 +35,7 @@ class CharacterTokenizer:
             # Build vocabulary from text
             chars = sorted(set(text))
             self.char_to_idx = {ch: i for i, ch in enumerate(chars)}
-            self.idx_to_char = {i: ch for i, ch in enumerate(chars)}
+            self.idx_to_char = dict(enumerate(chars))
             self.vocab_size = len(chars)
         else:
             # Default to ASCII
@@ -166,7 +166,7 @@ def load_text_file(path: str | Path) -> str:
     Returns:
         File contents as string.
     """
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return f.read()
 
 

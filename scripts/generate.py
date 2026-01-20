@@ -11,7 +11,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 
-from parallax.config import TINY_CONFIG, TransformerConfig
+from parallax.config import TransformerConfig
 from parallax.inference.generate import generate
 from parallax.model.transformer import create_model
 from parallax.training.data import CharacterTokenizer

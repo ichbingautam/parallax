@@ -99,8 +99,6 @@ class TestTransformerLM:
 
         # Check that output projections have smaller norms
         # (scaled by 1/sqrt(2*num_layers))
-        expected_scale = 1.0 / jnp.sqrt(2.0 * config.num_layers)
-
         block_0_o_proj = params["params"]["block_0"]["attention"]["o_proj"]["kernel"]
         # The initialization variance should be scaled down
         # This is a rough check - actual variance depends on initialization

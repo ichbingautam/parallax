@@ -10,11 +10,10 @@ Reference: https://arxiv.org/abs/1711.05101 (Decoupled Weight Decay)
 
 from typing import Any
 
+import jax
 import jax.numpy as jnp
 import optax
 from flax.training import train_state
-
-from parallax.config import TransformerConfig
 
 # Type aliases
 PyTree = Any
@@ -163,7 +162,3 @@ def global_norm(tree: PyTree) -> jnp.ndarray:
     """
     leaves = jax.tree_util.tree_leaves(tree)
     return jnp.sqrt(sum(jnp.sum(x**2) for x in leaves))
-
-
-# Need to import jax for tree operations
-import jax

@@ -16,7 +16,6 @@ Usage:
 
 import argparse
 import time
-from pathlib import Path
 
 import jax
 import jax.numpy as jnp
@@ -217,10 +216,7 @@ def train_single(args: argparse.Namespace) -> None:
     print(f"Vocab size: {tokenizer.vocab_size}")
 
     # Config
-    if args.config == "tiny":
-        config = TINY_CONFIG
-    else:
-        config = SMALL_CONFIG
+    config = TINY_CONFIG if args.config == "tiny" else SMALL_CONFIG
 
     # Override vocab size
     config = TransformerConfig(
@@ -305,10 +301,7 @@ def train_distributed(args: argparse.Namespace) -> None:
     dataset = TextDataset(text, seq_len=args.seq_len, tokenizer=tokenizer)
 
     # Config
-    if args.config == "tiny":
-        config = TINY_CONFIG
-    else:
-        config = SMALL_CONFIG
+    config = TINY_CONFIG if args.config == "tiny" else SMALL_CONFIG
 
     config = TransformerConfig(
         vocab_size=tokenizer.vocab_size,

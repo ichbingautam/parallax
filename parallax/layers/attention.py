@@ -246,12 +246,8 @@ class MultiHeadAttention(nn.Module):
         # Handle KV-Cache
         if cache is not None:
             # Update cache with new K, V
-            k_cache = jax.lax.dynamic_update_slice(
-                cache.key, k, (0, 0, cache_index, 0)
-            )
-            v_cache = jax.lax.dynamic_update_slice(
-                cache.value, v, (0, 0, cache_index, 0)
-            )
+            k_cache = jax.lax.dynamic_update_slice(cache.key, k, (0, 0, cache_index, 0))
+            v_cache = jax.lax.dynamic_update_slice(cache.value, v, (0, 0, cache_index, 0))
             cache = KVCache(key=k_cache, value=v_cache)
 
             # Use cached K, V for attention

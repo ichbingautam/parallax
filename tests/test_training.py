@@ -27,12 +27,8 @@ class TestLossFunctions:
     def test_cross_entropy_shape(self) -> None:
         """Cross-entropy loss should return a scalar."""
         batch, seq_len, vocab_size = 2, 8, 100
-        logits = jax.random.normal(
-            jax.random.PRNGKey(0), (batch, seq_len, vocab_size)
-        )
-        targets = jax.random.randint(
-            jax.random.PRNGKey(1), (batch, seq_len), 0, vocab_size
-        )
+        logits = jax.random.normal(jax.random.PRNGKey(0), (batch, seq_len, vocab_size))
+        targets = jax.random.randint(jax.random.PRNGKey(1), (batch, seq_len), 0, vocab_size)
 
         loss = cross_entropy_loss(logits, targets)
         assert loss.shape == ()

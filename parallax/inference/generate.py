@@ -164,9 +164,7 @@ def generate(
         )
 
         # Append to output
-        output_tokens = jnp.concatenate(
-            [output_tokens, next_token[:, None]], axis=-1
-        )
+        output_tokens = jnp.concatenate([output_tokens, next_token[:, None]], axis=-1)
 
         # Check for EOS
         if eos_token_id is not None and jnp.all(next_token == eos_token_id):

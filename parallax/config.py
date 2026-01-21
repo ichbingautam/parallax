@@ -50,8 +50,7 @@ class TransformerConfig:
     def __post_init__(self) -> None:
         """Validate configuration parameters."""
         assert self.hidden_dim % self.num_heads == 0, (
-            f"hidden_dim ({self.hidden_dim}) must be divisible by "
-            f"num_heads ({self.num_heads})"
+            f"hidden_dim ({self.hidden_dim}) must be divisible by num_heads ({self.num_heads})"
         )
         assert self.vocab_size > 0, "vocab_size must be positive"
         assert self.num_layers > 0, "num_layers must be positive"
@@ -89,12 +88,7 @@ class TransformerConfig:
         # Final norm
         final_norm_params = self.hidden_dim
 
-        return (
-            embed_params
-            + self.num_layers * layer_params
-            + output_params
-            + final_norm_params
-        )
+        return embed_params + self.num_layers * layer_params + output_params + final_norm_params
 
 
 # Preset configurations for common model sizes

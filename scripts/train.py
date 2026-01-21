@@ -162,8 +162,7 @@ def train_overfit(args: argparse.Namespace) -> None:
 
         if step % args.log_interval == 0:
             tqdm.write(
-                f"Step {step:4d} | Loss: {metrics.loss:.4f} | "
-                f"Grad Norm: {metrics.grad_norm:.4f}"
+                f"Step {step:4d} | Loss: {metrics.loss:.4f} | Grad Norm: {metrics.grad_norm:.4f}"
             )
 
     # Final evaluation
@@ -192,7 +191,7 @@ def train_overfit(args: argparse.Namespace) -> None:
     if accuracy >= 0.95:
         print("\n✅ OVERFIT TEST PASSED - Model is mathematically correct!")
     else:
-        print(f"\n❌ OVERFIT TEST FAILED - Accuracy {accuracy*100:.1f}% < 95%")
+        print(f"\n❌ OVERFIT TEST FAILED - Accuracy {accuracy * 100:.1f}% < 95%")
 
 
 def train_single(args: argparse.Namespace) -> None:

@@ -184,7 +184,9 @@ def download_tiny_shakespeare(cache_dir: str | Path = ".data") -> str:
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
 
-    url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+    url = (
+        "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+    )
     path = cache_dir / "tiny_shakespeare.txt"
 
     if not path.exists():

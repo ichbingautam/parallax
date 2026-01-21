@@ -1,0 +1,13 @@
+# Development environment defaults
+project_id  = "your-project-id"  # Replace with your GCP project ID
+environment = "dev"
+region      = "us-central1"
+zone        = "us-central1-a"
+
+# TPU configuration
+tpu_type            = "v3-8"
+tpu_runtime_version = "tpu-ubuntu2204-base"
+preemptible         = true  # Use spot TPUs to save ~70% cost
+
+# Disk
+disk_size_gb = 100

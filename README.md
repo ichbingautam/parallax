@@ -87,31 +87,44 @@ pytest tests/ -v
 parallax/
 ├── parallax/
 │   ├── config.py           # Typed configuration classes
-│   ├── layers/
-│   │   ├── attention.py    # Multi-Head Attention + RoPE + KV-Cache
-│   │   ├── feedforward.py  # SwiGLU FFN
-│   │   ├── normalization.py # RMSNorm
-│   │   └── embeddings.py   # Token embeddings with weight tying
-│   ├── model/
-│   │   ├── block.py        # TransformerBlock
-│   │   └── transformer.py  # TransformerLM (full decoder stack)
-│   ├── training/
-│   │   ├── data.py         # Data pipeline and tokenization
-│   │   ├── loss.py         # Cross-entropy + Z-loss
-│   │   ├── optimizer.py    # AdamW + schedules
-│   │   └── train_step.py   # JIT-compiled training step
-│   ├── distributed/
-│   │   └── pmap_trainer.py # jax.pmap distributed training
-│   └── inference/
-│       └── generate.py     # Autoregressive generation
-├── tests/
-│   ├── test_layers.py      # Unit tests (14 tests)
-│   ├── test_model.py       # Model tests (8 tests)
-│   └── test_training.py    # Training tests + overfit (14 tests)
-└── scripts/
-    ├── train.py            # Main training script
-    └── generate.py         # Interactive text generation
+│   ├── layers/             # Core neural network layers
+│   ├── model/              # TransformerBlock, TransformerLM
+│   ├── training/           # Loss, optimizer, train_step
+│   ├── distributed/        # jax.pmap distributed training
+│   └── inference/          # Autoregressive generation
+├── tests/                  # 36 unit tests
+├── scripts/                # Training and generation scripts
+├── terraform/              # GCP TPU infrastructure
+└── .github/workflows/      # CI/CD pipeline
 ```
+
+## Infrastructure (Terraform)
+
+Deploy TPU training infrastructure to GCP:
+
+```bash
+cd terraform
+terraform init
+terraform apply -var="project_id=YOUR_PROJECT_ID"
+
+# SSH to TPU VM
+gcloud compute tpus tpu-vm ssh parallax-dev-tpu --zone=us-central1-a
+
+# Run distributed training
+python scripts/train.py --mode distributed
+```
+
+**Resources**: TPU v3-8, GCS bucket, VPC network, Service account
+
+⚠️ **Cost Warning**: TPU v3-8 costs ~$8/hour. Destroy resources when not training!
+
+## CI/CD
+
+GitHub Actions workflow runs on every push:
+
+- **Lint**: Ruff linter and formatter
+- **Test**: pytest across Python 3.10-3.12
+- **Type Check**: Pyright (advisory)
 
 ## Portfolio Artifacts
 

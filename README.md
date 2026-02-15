@@ -347,17 +347,21 @@ cd terraform
 # Initialize
 terraform init
 
+# Configure (copy example)
+cp terraform.tfvars.example terraform.tfvars
+# Edit terraform.tfvars with your project_id
+
 # Preview
-terraform plan -var="project_id=YOUR_PROJECT"
+terraform plan
 
 # Deploy
-terraform apply -var="project_id=YOUR_PROJECT"
+terraform apply
 
 # Connect
 gcloud compute tpus tpu-vm ssh parallax-dev-tpu --zone=us-central1-a
 
 # Destroy when done!
-terraform destroy -var="project_id=YOUR_PROJECT"
+terraform destroy
 ```
 
 ### Resources Created
@@ -371,7 +375,7 @@ terraform destroy -var="project_id=YOUR_PROJECT"
 
 ### ⚠️ Cost Warning
 
-- **TPU v3-8**: ~$8/hour (~$5.60/hour preemptible)
+- **TPU v3-8**: ~$8/hour (on-demand) or ~$2.40/hour (preemptible)
 - **Always run `terraform destroy` when not training!**
 
 ---
